@@ -5,6 +5,8 @@ void main() => runApp(new MyApp());
 
 
 class MyApp extends StatelessWidget {
+  final title = 'Flutterサンプル';
+  final message = 'サンプル・メッセージ。';
   
   @override
   Widget build(BuildContext context) {
@@ -12,16 +14,51 @@ class MyApp extends StatelessWidget {
 
     return new MaterialApp(
       title: 'Flutter Demo',
-
-
-      home: Scaffold( // 多分基本的なものだろう
-        appBar: AppBar(
-          title: Text('Hello Flutter!'),
-        ),
-        body: Scaffold (appBar: AppBar(
-          title: Text('Hello Flutterrrrrrrrrrrrrrrrrr2!')
-          )
+      home: new MyHomePage(
+        title:this.title, 
+        message:this.message
       ),
     );
+  }
+}
+
+
+class MyHomePage extends StatefulWidget { // ステートあり
+  final String title;
+  final String message;
+
+
+  MyHomePage({this.title, this.message}): super();
+
+
+  @override
+  _MyHomePageState createState() => new _MyHomePageState(); // ここで必ず作る
+}
+
+
+class _MyHomePageState extends State<MyHomePage> { // 何にステートを持たせるか<>でくくる
+
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
+
+
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+
+
+      body: Text(
+        widget.message,
+        style: TextStyle(fontSize:32.0),
+       ),
+
+
+    );
+
+
   }
 }
