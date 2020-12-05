@@ -12,11 +12,16 @@ class MyApp extends StatelessWidget {
 
     return new MaterialApp(
       title: 'Flutter Demo',
-      home: Text(
-        'Hello, Flutter World!!',
-        style: TextStyle(fontSize:32.0),
-       ),
-      //  home: TabBar()
+
+
+      home: Scaffold( // 多分基本的なものだろう
+        appBar: AppBar(
+          title: Text('Hello Flutter!'),
+        ),
+        body: Scaffold (appBar: AppBar(
+          title: Text('Hello Flutterrrrrrrrrrrrrrrrrr2!')
+          )
+      ),
     );
   }
 }
