@@ -1,3 +1,4 @@
+リスト2-4
 import 'package:flutter/material.dart';
 
 
@@ -6,7 +7,8 @@ void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   final title = 'Flutterサンプル';
-  final message = 'サンプル・メッセージ。';
+
+
   
   @override
   Widget build(BuildContext context) {
@@ -16,27 +18,40 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: new MyHomePage(
         title:this.title, 
-        message:this.message
       ),
     );
   }
 }
 
 
-class MyHomePage extends StatefulWidget { // ステートあり
+class MyHomePage extends StatefulWidget {
+
+
+  MyHomePage({this.title}): super();
+
+
   final String title;
-  final String message;
-
-
-  MyHomePage({this.title, this.message}): super();
-
-
+  
   @override
-  _MyHomePageState createState() => new _MyHomePageState(); // ここで必ず作る
+  _MyHomePageState createState() => new _MyHomePageState();
 }
 
 
-class _MyHomePageState extends State<MyHomePage> { // 何にステートを持たせるか<>でくくる
+class _MyHomePageState extends State<MyHomePage> {
+  String _message;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _message = 'Hello!';
+  }
+  
+  void _setMessage() {
+    setState(() {
+      _message = 'タップしました！';
+    });
+  }
 
 
   @override
@@ -52,13 +67,19 @@ class _MyHomePageState extends State<MyHomePage> { // 何にステートを持�
 
 
       body: Text(
-        widget.message,
+        _message,
         style: TextStyle(fontSize:32.0),
        ),
 
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: _setMessage,
+        tooltip: 'set message.',
+        child: Icon(Icons.star),
+      ),
+
+
     );
-
-
   }
 }
+
