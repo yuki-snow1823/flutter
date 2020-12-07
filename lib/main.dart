@@ -33,11 +33,11 @@ class MyHomePage extends StatefulWidget {
   final String title;
   
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => new _MyHomePageState(); // ここが
 }
 
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> { // こことつながる
   String _message;
 
 
@@ -69,8 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Text(
         _message,
         style: TextStyle(fontSize:32.0),
-       ),
-
+      ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: _setMessage,
@@ -82,4 +81,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
