@@ -136,56 +136,70 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('App Name'),
-          ),
-        body:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+  var _message;
+  static var _janken = <String>['グー','チョキ','パー'];
 
 
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Left',
+  @override
+  void initState() {
+    _message = 'ok.';
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold( // ここが全体を定義している
+      appBar: AppBar(
+        title: Text('App Name'),
+        ), // 設定する
+
+      body: // 中身を定義
+
+        Center( // 中央に何か置くウィジェット
+          child:
+            Column( // カラム
+              mainAxisAlignment: MainAxisAlignment.start, // てっぺんからスタート
+              mainAxisSize: MainAxisSize.min, // 真ん中に配置になった
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[ //【疑問】このタグみたいなのなんだっけ？
+
+
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                  _message,
                     style: TextStyle(fontSize:32.0,
                     fontWeight: FontWeight.w400,
                     fontFamily: "Roboto"),
                   ),
-                ),
-    
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                'Center',
-                  style: TextStyle(fontSize:32.0,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "Roboto"),
-                ),
-              ),
-
-
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                'Right',
-                  style: TextStyle(fontSize:32.0,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "Roboto"),
-                ),
-              ),
-            ]
-    
-          ),
-    
-      );
-    }
-    void fabPressed() {}
-    
+                ), // さらに中に入れ込む
+  
+                FlatButton(key:null,  // ボタンの特徴
+                  onPressed:buttonPressed,
+                  color: Colors.black12,
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                      child:Text(
+                        "Push me!",
+                        style: TextStyle(fontSize:32.0,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                      )
+                    )
+                  )
+              ]
+  
+            ),
+        ),
+  
+    );
+  }
+  void buttonPressed(){
+    setState((){
+      _message = (_janken..shuffle()).first; // メッセージ変数の書き換え
+    });
+  }
+        
 }
