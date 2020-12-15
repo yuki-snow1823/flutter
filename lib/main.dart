@@ -157,16 +157,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ), // さらに中に入れ込む
 
-              FlatButton(
-                  key: null,
-                  onPressed: buttonPressed,
-                  color: Colors.black12,
-                  child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(
-                        Icons.android,
-                        size: 50.0,
-                      )))
+              RaisedButton(
+                child: const Text('Button'),
+                color: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                onPressed: () {},
+              ),
+              
             ]),
       ),
     );
