@@ -118,7 +118,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _message;
-  static var _janken = <String>['グー', 'チョキ', 'パー'];
+  final controller = TextEditingController();
+
 
   @override
   void initState() {
@@ -126,54 +127,65 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ここが全体を定義している
       appBar: AppBar(
         title: Text('App Name'),
-      ), // 設定する
+        ),
+      body:
+        Center(
+          child:
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
 
-      body: // 中身を定義
-
-          Center(
-        // 中央に何か置くウィジェット
-        child: Column(
-            // カラム
-            mainAxisAlignment: MainAxisAlignment.start, // てっぺんからスタート
-            mainAxisSize: MainAxisSize.min, // 真ん中に配置になった
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              //【疑問】このタグみたいなのなんだっけ？
-
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
                   _message,
-                  style: TextStyle(
-                      fontSize: 32.0,
+                    style: TextStyle(fontSize:32.0,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Roboto"),
+                  ),
+                ),
+
+
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      controller: controller,
+                      style: TextStyle(fontSize:28.0,
+                      color: const Color(0xFFFF0000),
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto"),
+                  ),
                 ),
-              ), // さらに中に入れ込む
-
-              RaisedButton(
-                child: const Text('Button'),
-                color: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+  
+                FlatButton(
+                  padding: EdgeInsets.all(10.0),
+                  color: Colors.lightBlueAccent,
+                  child: Text(
+                        "Push me!",
+                        style: TextStyle(fontSize:32.0,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                      ),
+                  onPressed: buttonPressed
                 ),
-                onPressed: () {},
-              ),
-              
-            ]),
-      ),
+              ],
+          ),
+        ),
     );
   }
-
-  void buttonPressed() {
-    setState(() {
-      _message = (_janken..shuffle()).first; // メッセージ変数の書き換え
+  void buttonPressed(){
+    setState((){
+      _message = 'you said: ' + controller.text;
     });
   }
+        
 }
