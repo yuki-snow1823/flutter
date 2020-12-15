@@ -138,19 +138,54 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
     @override
     Widget build(BuildContext context) {
-      return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('App Name'),
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('App Name'),
           ),
         body:
-          new Text(
-          "Hello Flutter!",
-            style: new TextStyle(fontSize:32.0,
-            color: const Color(0xFFbd15bd),
-            fontWeight: FontWeight.w700,
-            fontFamily: "Roboto"),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Left',
+                    style: TextStyle(fontSize:32.0,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Roboto"),
+                  ),
+                ),
+    
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                'Center',
+                  style: TextStyle(fontSize:32.0,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto"),
+                ),
+              ),
+
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                'Right',
+                  style: TextStyle(fontSize:32.0,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto"),
+                ),
+              ),
+            ]
+    
           ),
     
       );
     }
+    void fabPressed() {}
+    
 }
