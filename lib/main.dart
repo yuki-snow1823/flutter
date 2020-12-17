@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontFamily: 'Roboto'),
 
 
-                items: <DropdownMenuItem<String>>[
+                items: <DropdownMenuItem<String>>[ // ジェネリクス、この型しか入らない
 
 
                   const DropdownMenuItem<String>(value: 'One',
